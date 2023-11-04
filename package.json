@@ -7,6 +7,7 @@
     "path": "latest",
     "rotating-file-stream": "latest",
     "express-timestamp": "latest",
-    "fs": "latest"
+    "fs": "latest",
+    "s3-streamlogger" : "latest"
   }
 }
