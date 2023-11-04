@@ -8,6 +8,7 @@
     "rotating-file-stream": "latest",
     "express-timestamp": "latest",
     "fs": "latest",
-    "s3-streamlogger" : "latest"
+    "s3-streamlogger" : "latest",
+    "aws-sdk" : "latest"
   }
 }
