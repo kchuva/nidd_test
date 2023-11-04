@@ -12,9 +12,9 @@ const port = 8080
     interval: '1d',
     path: path.join(__dirname, 'log')
 })*/
-var accessLogStream = fs.createWriteStream(path.join(__dirname, 'request.log'), {
+/*var accessLogStream = fs.createWriteStream(path.join(__dirname, 'request.log'), {
     flags: 'a'
-})
+})*/
 
 morgan.token('timestamp', function getTimestamp(req) {
     return req.timestamp.format()
@@ -45,9 +45,7 @@ app.use('/', express.json());
 /*app.post('/', morgan(':timestamp :nbiot-id :nbiot-data :nbiot-decoded', {
     stream: accessLogStream
 }))*/
-app.post('/', morgan(customFormat, {
-    stream: accessLogStream
-}))
+app.post('/', morgan(customFormat))
 app.post('/', (req, res) => {
     //const buffer = Buffer.from(req.body.data,'base64');
     //const decodedData = buffer.toString('hex');
