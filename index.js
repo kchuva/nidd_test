@@ -4,6 +4,7 @@ const path = require('path')
 const rfs = require('rotating-file-stream')
 const et = require('express-timestamp')
 const fs = require('fs')
+const Writable = require("stream").Writable
 //const { S3StreamLogger } = require('s3-streamlogger');
 const AWS = require("aws-sdk");
 const s3 = new AWS.S3()
