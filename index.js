@@ -34,7 +34,7 @@ class MyS3Stream extends Writable {
         }).promise()
     }
 }
-var s3stream = new MyStream();
+var s3stream = new MyS3Stream();
 
 /*var accessLogStream = rfs.createStream('request.log', {
     interval: '1d',
