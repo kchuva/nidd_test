@@ -8,6 +8,10 @@ const { S3StreamLogger } = require('s3-streamlogger');
 
 const s3stream = new S3StreamLogger({
      bucket: "cyclic-fantastic-yak-handbag-eu-north-1",
+     folder: "logs",
+     buffer_size: 1024,
+     upload_every: 5000,
+     rotate_every: 86400000,
 });
 const app = express()
 const port = 8080
