@@ -8,5 +8,5 @@
     "rotating-file-stream": "latest",
     "express-timestamp": "latest",
     "fs": "latest",
-  },
+  }
 }
