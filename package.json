@@ -9,6 +9,7 @@
     "express-timestamp": "latest",
     "fs": "latest",
     "s3-streamlogger" : "latest",
-    "aws-sdk" : "latest"
+    "aws-sdk" : "latest",
+    "stream" : "latest"
   }
 }
