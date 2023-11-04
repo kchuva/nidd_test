@@ -4,7 +4,11 @@ const path = require('path')
 const rfs = require('rotating-file-stream')
 const et = require('express-timestamp')
 const fs = require('fs')
+const { S3StreamLogger } = require('s3-streamlogger');
 
+const s3stream = new S3StreamLogger({
+     bucket: "cyclic-fantastic-yak-handbag-eu-north-1",
+});
 const app = express()
 const port = 8080
 
@@ -17,7 +21,7 @@ const port = 8080
 })*/
 
 morgan.token('timestamp', function getTimestamp(req) {
-    return req.timestamp.format()
+    return req.timestamp.format('YYYY-MM-DD HH:mm:ss:SSS')
 })
 morgan.token('nbiot-id', function getNbiotId(req) {
     return req.body.externalId
@@ -45,7 +49,9 @@ app.use('/', express.json());
 /*app.post('/', morgan(':timestamp :nbiot-id :nbiot-data :nbiot-decoded', {
     stream: accessLogStream
 }))*/
-app.post('/', morgan(customFormat))
+app.post('/', morgan(customFormat, {
+    stream: s3stream
+}))
 app.post('/', (req, res) => {
     //const buffer = Buffer.from(req.body.data,'base64');
     //const decodedData = buffer.toString('hex');
