@@ -25,9 +25,9 @@ class MyS3Stream extends Writable {
     write(line) {
         // Here you send the log line to wherever you need
         console.log("Logger:: ", line)
-         log_buffer += '\r\n' + line;
+         this.log_buffer += '\r\n' + line;
         s3.putObject({
-            Body: log_buffer,
+            Body: this.log_buffer,
             Bucket: "cyclic-fantastic-yak-handbag-eu-north-1",
             Key: "logs/my_file.csv",
         }).promise()
