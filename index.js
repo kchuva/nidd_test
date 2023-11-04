@@ -4,8 +4,11 @@ const path = require('path')
 const rfs = require('rotating-file-stream')
 const et = require('express-timestamp')
 const fs = require('fs')
-const { S3StreamLogger } = require('s3-streamlogger');
+//const { S3StreamLogger } = require('s3-streamlogger');
+const AWS = require("aws-sdk");
+const s3 = new AWS.S3()
 
+/*
 const s3stream = new S3StreamLogger({
      bucket: "cyclic-fantastic-yak-handbag-eu-north-1",
      folder: "logs",
@@ -13,8 +16,24 @@ const s3stream = new S3StreamLogger({
      upload_every: 5000,
      rotate_every: 86400000,
 });
+*/
 const app = express()
 const port = 8080
+var log_buffer = ""
+
+class MyS3Stream extends Writable {
+    write(line) {
+        // Here you send the log line to wherever you need
+        console.log("Logger:: ", line)
+         log_buffer += '\r\n' + line;
+        s3.putObject({
+            Body: log_buffer,
+            Bucket: "cyclic-fantastic-yak-handbag-eu-north-1",
+            Key: "logs/my_file.csv",
+        }).promise()
+    }
+}
+var s3stream = new MyStream();
 
 /*var accessLogStream = rfs.createStream('request.log', {
     interval: '1d',
