@@ -20,7 +20,6 @@ const s3stream = new S3StreamLogger({
 */
 const app = express()
 const port = 8080
-var log_buffer = ""
 
 class MyS3Stream extends Writable {
     write(line) {
@@ -33,6 +32,7 @@ class MyS3Stream extends Writable {
             Key: "logs/my_file.csv",
         }).promise()
     }
+  log_buffer = ""
 }
 var s3stream = new MyS3Stream();
 
